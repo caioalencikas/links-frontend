@@ -13,8 +13,6 @@ const SignIn = (props) => {
         signIn({email: 'cacalf16@gmail.com', password: '123456'})
     }
 
-    console.log('*** SignIn.account', account)
-
     return (
         <div className="container h-100 pt-5">
             <h1>Sign In</h1>
