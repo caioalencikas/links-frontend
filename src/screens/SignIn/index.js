@@ -5,7 +5,7 @@ import {signIn} from './SignInActions'
 
 
 const SignIn = (props) => {
-    const { account, signIn} = props
+    const { signIn} = props
     
     const submitHandler = (e) => {
         e.preventDefault()
