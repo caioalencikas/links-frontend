@@ -1,48 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Layout from '../../../Layouts/Manage'
+import FormGroup from '../../../../components/FormGroup'
+import FormCheck from '../../../../components/FormCheck'
+import { linkGet } from '../../../../actions/LinkActions'
+import { connect } from 'react-redux'
 
-const Edit = () => {
-    return ( <
-        Layout >
-        <
-        h1 > Edit Link < /h1> <
-        div >
-        <
-        form >
-        <
-        div className = "form-group" >
-        <
-        label > Label < /label> <
-        input type = "text"
-        className = "form-control" / >
-        <
-        /div> <
-        div className = "form-group" >
-        <
-        label > Url < /label> <
-        input type = "password"
-        className = "form-control" / >
-        <
-        /div> <
-        div className = "form-group form-check" >
-        <
-        label className = "form-check-label" >
-        <
-        input type = "checkbox"
-        name = "isSocial" / >
-        <
-        span className = "form-check-sign" > < /span>
-        Is Social <
-        /label> <
-        /div> <
-        div >
-        <
-        button className = "btn btn-primary btn-round" > Submit < /button> <
-        /div> <
-        /form> <
-        /div> <
-        /Layout>
+const Edit = ({ link, linkGet }) => {
+
+    const { id } = useParams()
+
+    useEffect(() => {
+        linkGet(id)
+    }, [id, linkGet])
+
+    return (
+        <Layout>
+            <h1>Edit Link</h1>
+            <div>
+                <form>
+                    <FormGroup label="Label" name="label" data={link} type="text" />
+                    <FormGroup label="Url" name="url" data={link} type="text" />
+                    <FormCheck label="Is Social" name="isSocial" data={link} />
+                    <div>
+                        <button className="btn btn-primary btn-round">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </Layout>
     )
 }
 
-export default Edit
+const mapStateToProps = (state) => {
+    return {
+        link: state.link.link
+    }
+}
+
+export default connect(mapStateToProps, { linkGet })(Edit)
