@@ -9,10 +9,12 @@ import store from './store'
 import App from './App'
 
 import './styles/main.scss'
+import TokenRefresher from './components/TokenRefresher'
 
-ReactDOM.render( 
-    <Provider store = {store}>
+ReactDOM.render(
+    <Provider store={store}>
+        <TokenRefresher/>
         <App />
-    </Provider>, 
+    </Provider>,
     document.getElementById('root'),
 )
